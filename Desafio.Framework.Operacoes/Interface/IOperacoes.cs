@@ -1,14 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 
 namespace Desafio.Framework.BLL.Operacoes
 {
     public interface IOperacoes
     {        
-        IList<int> NumerosDivisores(int n);
-        IList<int> NumerosPrimos(int n);
+        IEnumerable<int> NumerosDivisores(int n);
+        IEnumerable<int> NumerosPrimos(int n);
+        IEnumerable<int> NumerosDivisoresPrimos(int n);
     }
 }

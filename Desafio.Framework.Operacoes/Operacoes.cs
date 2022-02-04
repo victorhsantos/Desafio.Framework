@@ -1,20 +1,18 @@
-﻿using Desafio.Framework.BLL.Operacoes;
-using System;
+﻿using System;
 using System.Collections.Generic;
 
-namespace Desafio.Framework.Operacoes
+namespace Desafio.Framework.BLL.Operacoes
 {
     public class Operacoes : IOperacoes
     {
-
-        IList<int> IOperacoes.NumerosDivisores(int n)
+        IEnumerable<int> IOperacoes.NumerosDivisores(int n)
         {
             if (n == 0)
-                throw new Exception("Não existe divisores entre zero.");
+                throw new ArgumentException("Não existe divisores entre zero.");
 
-            var numerosDivisores = new List<int>();
+            var numerosDivisores = new List<int>() { 1 };
 
-            for (int i = 1; i <= n; i++)
+            for (int i = 2; i <= n; i++)
                 if (EhDivisor(i, n))
                     numerosDivisores.Add(i);
 
@@ -22,10 +20,11 @@ namespace Desafio.Framework.Operacoes
 
         }
 
-        IList<int> IOperacoes.NumerosPrimos(int n)
+        IEnumerable<int> IOperacoes.NumerosPrimos(int n)
         {
+
             if (n == 0)
-                throw new Exception("Não existe numeros primos entre zero.");
+                throw new ArgumentException("Não existe numeros primos entre zero.");
 
             var numerosPrimos = new List<int>() { 1 };
 
@@ -37,12 +36,24 @@ namespace Desafio.Framework.Operacoes
 
         }
 
+        IEnumerable<int> IOperacoes.NumerosDivisoresPrimos(int n)
+        {
+            if (n == 0)
+                throw new ArgumentException("Não existe numeros divisores primos entre zero.");
+
+            var numerosPrimos = new List<int>() { 1 };
+
+            for (int i = 2; i <= n; i++)
+                if (EhDivisor(i, n) && EhPrimo(i))
+                    numerosPrimos.Add(i);
+
+            return numerosPrimos;
+
+        }
+
         private bool EhDivisor(int numTesteDivisor, int numDivisor)
         {
-            if (numTesteDivisor == 0)
-                throw new Exception("Não é possivel calcular os a divisão por zero.");
-
-            var resto = numTesteDivisor % numDivisor;
+            var resto = numDivisor % numTesteDivisor;
             if (resto == 0)
                 return true;
 
@@ -62,6 +73,5 @@ namespace Desafio.Framework.Operacoes
 
             return ehPrimo;
         }
-
     }
 }
