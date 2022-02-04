@@ -1,15 +1,8 @@
-﻿using System;
-using System.Text;
-using System.Security.Claims;
-using System.IdentityModel.Tokens.Jwt;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.IdentityModel.Tokens;
-using Microsoft.Extensions.Configuration;
-using Desafio.Framework.AuthProvider.Models;
-using Swashbuckle.AspNetCore.Annotations;
+﻿using Microsoft.AspNetCore.Mvc;
 
-namespace Desafio.Framework.AuthProvider.Controllers
+namespace Desafio.Framework.Api.Autenticacao.Controllers
 {
+    [Authorize]
     [ApiController]
     [Route("api/[controller]")]
     public class LoginController : Controller
@@ -22,32 +15,39 @@ namespace Desafio.Framework.AuthProvider.Controllers
         }
 
         [HttpPost]
-        [SwaggerOperation(Summary = "Valida informacoes de login e retorna um token para a API de Operacoes.")]
+        [SwaggerOperation(Summary = "NomeUsuario = Framework / Senha = 123")]
         [ProducesResponseType(statusCode: 200, Type = typeof(string))]
         [ProducesResponseType(statusCode: 401)]
         public IActionResult Login([FromBody, SwaggerParameter(Required = true)] Usuario loginDetalhes)
         {
-            bool resultado = ValidarUsuario(loginDetalhes);
+            //bool resultado = ValidarUsuario(loginDetalhes);
+            bool resultado = true;
             if (resultado)
             {
-                var tokenString = GerarTokenJWT();
-                return Ok(tokenString);
+                var tokenString = GerarTokenJWT(loginDetalhes.NomeUsuario);
+                return Ok(new { token = tokenString });
             }
 
             return Unauthorized();
 
         }
-
-        private string GerarTokenJWT()
+        private string GerarTokenJWT(string userRequest)
         {
             var issuer = _config["Jwt:Issuer"];
             var audience = _config["Jwt:Audience"];
             var securityKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_config["Jwt:Key"]));
+            //var issuer = "Desafio.Framework";
+            //var audience = "Postman";
+            //var securityKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("desafio-framework-dotnet-authentication-valid"));
+
+
+
+
             var credentials = new SigningCredentials(securityKey, SecurityAlgorithms.HmacSha256);
-            var timeExpires = DateTime.Now.AddMinutes(10);
+            var timeExpires = DateTime.Now.AddMinutes(30);
             var claims = new[]
             {
-                new Claim(JwtRegisteredClaimNames.Sub, "Framework"),
+                new Claim(JwtRegisteredClaimNames.Sub, userRequest),
                 new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString())
             };
 
@@ -62,11 +62,13 @@ namespace Desafio.Framework.AuthProvider.Controllers
             var stringToken = new JwtSecurityTokenHandler().WriteToken(token);
             return stringToken;
         }
-
         private bool ValidarUsuario(Usuario loginDetalhes)
         {
-            //TODO: Implementacao da validacao de usuario
-            return true;
+            if (loginDetalhes.NomeUsuario == "Framework" && loginDetalhes.Senha == "123")
+                return true;
+
+            return false;
+
         }
     }
 }

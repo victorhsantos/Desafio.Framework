@@ -15,9 +15,9 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Repository", "Repository", 
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Desafio.Framework.Api", "Desafio.Framework.Api\Desafio.Framework.Api.csproj", "{0A4F0CBE-676A-4978-A99A-E15072A0C167}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Desafio.Framework.BLL.Operacoes", "Desafio.Framework.Operacoes\Desafio.Framework.BLL.Operacoes.csproj", "{0B0367B7-3DC5-4C82-BB02-DB6ECF5854DC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Desafio.Framework.BLL.Operacoes", "Desafio.Framework.Operacoes\Desafio.Framework.BLL.Operacoes.csproj", "{0B0367B7-3DC5-4C82-BB02-DB6ECF5854DC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Desafio.Framework.AuthProvider", "Desafio.Framework.AuthProvider\Desafio.Framework.AuthProvider.csproj", "{30C7E14C-7A88-4854-B79B-553069FC1648}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Desafio.Framework.AuthProvider", "Desafio.Framework.AuthProvider\Desafio.Framework.AuthProvider.csproj", "{30C7E14C-7A88-4854-B79B-553069FC1648}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

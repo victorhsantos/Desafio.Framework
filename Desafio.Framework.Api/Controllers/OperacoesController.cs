@@ -1,6 +1,6 @@
 ﻿using Desafio.Framework.Api.Models;
 using Desafio.Framework.BLL.Operacoes;
-using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Swashbuckle.AspNetCore.Annotations;
 using System.Collections.Generic;
@@ -8,9 +8,11 @@ using System.Collections.Generic;
 namespace Desafio.Framework.Api.Controllers
 {
 
+    [Authorize]
     [ApiController]
-    [ApiVersion("1.0")]    
     [Route("api/[controller]")]    
+    [ApiVersion("1.0")]
+    [Produces("application/json")]
     public class OperacoesController : ControllerBase
     {
         private readonly IOperacoes _operacoes;
