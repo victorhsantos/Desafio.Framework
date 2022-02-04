@@ -1,5 +1,7 @@
-using Desafio.Framework.Api.Filter;
-using Desafio.Framework.BLL.Operacoes;
+using System;
+using System.Text;
+using System.Collections.Generic;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc.Versioning;
@@ -8,9 +10,8 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
-using System;
-using System.Collections.Generic;
-using System.Text;
+using Desafio.Framework.Api.Filter;
+using Desafio.Framework.BLL.Operacoes;
 
 namespace Desafio.Framework.Api
 {
@@ -41,11 +42,11 @@ namespace Desafio.Framework.Api
                     new HeaderApiVersionReader("api-version")
                     );
             });
-
+            
             services.AddAuthentication(options =>
             {
-                options.DefaultAuthenticateScheme = "JwtBearer";
-                options.DefaultChallengeScheme = "JwtBearer";
+                options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+                options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
             }).AddJwtBearer(options =>
             {
                 options.TokenValidationParameters = new TokenValidationParameters
@@ -98,9 +99,9 @@ namespace Desafio.Framework.Api
             }
 
             app.UseHttpsRedirection();
-
             app.UseRouting();
 
+            app.UseAuthentication();
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
