@@ -4,8 +4,8 @@ namespace Desafio.Framework.BLL.Operacoes
 {
     public interface IOperacoes
     {        
-        IEnumerable<int> NumerosDivisores(int n);
-        IEnumerable<int> NumerosPrimos(int n);
-        IEnumerable<int> NumerosDivisoresPrimos(int n);
+        public List<int> NumerosDivisores(int n);
+        public List<int> NumerosPrimos(int n);
+        public List<int> NumerosDivisoresPrimos(int n);
     }
 }

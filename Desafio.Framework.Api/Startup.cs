@@ -63,9 +63,12 @@ namespace Desafio.Framework.Api
             });
 
             services.AddSwaggerGen(options =>
-            {
-                options.EnableAnnotations();
-                options.SwaggerDoc("v1", new OpenApiInfo { Title = "Desafio.Framework.Api", Description = "API de Operações", Version = "1.0" });
+            {                               
+                options.SwaggerDoc("v1", new OpenApiInfo 
+                { 
+                    Title = "Desafio.Framework.Api", 
+                    Description = "API de Operações", Version = "1.0" });
+
                 options.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
                 {
                     Description = "Gere o Token na API Desafio.Framework.AuthProvider com o seguinte Login:\r\n\r\nNomeUsuario = Framework / Senha = 123",
@@ -74,6 +77,7 @@ namespace Desafio.Framework.Api
                     Type = SecuritySchemeType.ApiKey,
                     Scheme = "Bearer"
                 });
+
                 options.AddSecurityRequirement(new OpenApiSecurityRequirement()
                 { { new OpenApiSecurityScheme
                     {
@@ -84,6 +88,8 @@ namespace Desafio.Framework.Api
                     },
                         new List<string>()
                     } });
+
+                options.EnableAnnotations();
                 options.OperationFilter<AuthResponsesOperationFilter>();
             });
         }

@@ -5,7 +5,7 @@ namespace Desafio.Framework.BLL.Operacoes
 {
     public class Operacoes : IOperacoes
     {
-        IEnumerable<int> IOperacoes.NumerosDivisores(int n)
+        public List<int> NumerosDivisores(int n)
         {
             if (n == 0)
                 return null;
@@ -20,7 +20,7 @@ namespace Desafio.Framework.BLL.Operacoes
 
         }
 
-        IEnumerable<int> IOperacoes.NumerosPrimos(int n)
+        public List<int> NumerosPrimos(int n)
         {
 
             if (n == 0)
@@ -36,7 +36,7 @@ namespace Desafio.Framework.BLL.Operacoes
 
         }
 
-        IEnumerable<int> IOperacoes.NumerosDivisoresPrimos(int n)
+        public List<int> NumerosDivisoresPrimos(int n)
         {
             if (n == 0)
                 return null;
