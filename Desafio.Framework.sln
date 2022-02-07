@@ -19,6 +19,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Desafio.Framework.BLL.Opera
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Desafio.Framework.AuthProvider", "Desafio.Framework.AuthProvider\Desafio.Framework.AuthProvider.csproj", "{30C7E14C-7A88-4854-B79B-553069FC1648}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Desafio.Framework.Tests", "Desafio.Framework.Tests\Desafio.Framework.Tests.csproj", "{DA86DBE9-168B-4549-B60D-F6DEE9080521}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -37,6 +39,10 @@ Global
 		{30C7E14C-7A88-4854-B79B-553069FC1648}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{30C7E14C-7A88-4854-B79B-553069FC1648}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{30C7E14C-7A88-4854-B79B-553069FC1648}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DA86DBE9-168B-4549-B60D-F6DEE9080521}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DA86DBE9-168B-4549-B60D-F6DEE9080521}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DA86DBE9-168B-4549-B60D-F6DEE9080521}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DA86DBE9-168B-4549-B60D-F6DEE9080521}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -45,6 +51,7 @@ Global
 		{0A4F0CBE-676A-4978-A99A-E15072A0C167} = {A810CC42-DBA2-40B2-987D-A3CA5321E1D1}
 		{0B0367B7-3DC5-4C82-BB02-DB6ECF5854DC} = {1790C8B3-3D55-4188-8460-7E6E8951291B}
 		{30C7E14C-7A88-4854-B79B-553069FC1648} = {A810CC42-DBA2-40B2-987D-A3CA5321E1D1}
+		{DA86DBE9-168B-4549-B60D-F6DEE9080521} = {035A40F7-2F56-4C18-803C-0498F31B5E6D}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {2FE507D0-9524-4854-8A15-3DB7990850EB}

@@ -8,7 +8,7 @@ namespace Desafio.Framework.BLL.Operacoes
         IEnumerable<int> IOperacoes.NumerosDivisores(int n)
         {
             if (n == 0)
-                throw new ArgumentException("Não existe divisores entre zero.");
+                return null;
 
             var numerosDivisores = new List<int>() { 1 };
 
@@ -24,7 +24,7 @@ namespace Desafio.Framework.BLL.Operacoes
         {
 
             if (n == 0)
-                throw new ArgumentException("Não existe numeros primos entre zero.");
+                return null;
 
             var numerosPrimos = new List<int>() { 1 };
 
@@ -39,7 +39,7 @@ namespace Desafio.Framework.BLL.Operacoes
         IEnumerable<int> IOperacoes.NumerosDivisoresPrimos(int n)
         {
             if (n == 0)
-                throw new ArgumentException("Não existe numeros divisores primos entre zero.");
+                return null;
 
             var numerosPrimos = new List<int>() { 1 };
 

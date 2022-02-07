@@ -8,7 +8,7 @@ using System.Collections.Generic;
 namespace Desafio.Framework.Api.Controllers
 {
 
-    [Authorize]
+    //[Authorize]
     [ApiController]
     [Route("api/[controller]")]    
     [ApiVersion("1.0")]
@@ -28,7 +28,7 @@ namespace Desafio.Framework.Api.Controllers
         [ProducesResponseType(statusCode: 500, Type = typeof(ErrorResponse))]
         [ProducesResponseType(statusCode: 404)]
         public IActionResult Divisores(
-            [FromHeader, SwaggerParameter(Required = true)] 
+            [FromQuery, SwaggerParameter(Required = true)] 
             int numero)
         {
             var numDivisores = _operacoes.NumerosDivisores(numero);
@@ -45,7 +45,7 @@ namespace Desafio.Framework.Api.Controllers
         [ProducesResponseType(statusCode: 500, Type = typeof(ErrorResponse))]
         [ProducesResponseType(statusCode: 404)]
         public IActionResult Primos(
-            [FromHeader, SwaggerParameter(Required = true)] 
+            [FromQuery, SwaggerParameter(Required = true)] 
             int numero)
         {
             var numPrimos = _operacoes.NumerosPrimos(numero);
@@ -62,7 +62,7 @@ namespace Desafio.Framework.Api.Controllers
         [ProducesResponseType(statusCode: 500, Type = typeof(ErrorResponse))]
         [ProducesResponseType(statusCode: 404)]
         public IActionResult DivisoresPrimos(
-            [FromHeader, SwaggerParameter(Required = true)] 
+            [FromQuery, SwaggerParameter(Required = true)] 
             int numero)
         {
             var numPrimos = _operacoes.NumerosDivisoresPrimos(numero);

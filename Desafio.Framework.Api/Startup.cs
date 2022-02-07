@@ -38,11 +38,11 @@ namespace Desafio.Framework.Api
             services.AddApiVersioning(options =>
             {
                 options.ApiVersionReader = ApiVersionReader.Combine(
-                    new QueryStringApiVersionReader("api-version"),
-                    new HeaderApiVersionReader("api-version")
+                    new QueryStringApiVersionReader("apiversion"),
+                    new HeaderApiVersionReader("apiversion")
                     );
             });
-            
+
             services.AddAuthentication(options =>
             {
                 options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
@@ -82,7 +82,7 @@ namespace Desafio.Framework.Api
                         Name = "Bearer",
                         In = ParameterLocation.Header,
                     },
-                        new List<string>() 
+                        new List<string>()
                     } });
                 options.OperationFilter<AuthResponsesOperationFilter>();
             });
@@ -100,6 +100,13 @@ namespace Desafio.Framework.Api
 
             app.UseHttpsRedirection();
             app.UseRouting();
+
+            app.UseCors(options =>
+            {
+                options.AllowAnyOrigin();
+                options.AllowAnyHeader();
+                options.AllowAnyMethod();
+            });
 
             app.UseAuthentication();
             app.UseAuthorization();
