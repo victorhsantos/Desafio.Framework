@@ -5,10 +5,10 @@ namespace Desafio.Framework.BLL.Operacoes
 {
     public class Operacoes : IOperacoes
     {
-        IEnumerable<int> IOperacoes.NumerosDivisores(int n)
+        public List<int> NumerosDivisores(int n)
         {
             if (n == 0)
-                throw new ArgumentException("Não existe divisores entre zero.");
+                return null;
 
             var numerosDivisores = new List<int>() { 1 };
 
@@ -20,11 +20,11 @@ namespace Desafio.Framework.BLL.Operacoes
 
         }
 
-        IEnumerable<int> IOperacoes.NumerosPrimos(int n)
+        public List<int> NumerosPrimos(int n)
         {
 
             if (n == 0)
-                throw new ArgumentException("Não existe numeros primos entre zero.");
+                return null;
 
             var numerosPrimos = new List<int>() { 1 };
 
@@ -36,10 +36,10 @@ namespace Desafio.Framework.BLL.Operacoes
 
         }
 
-        IEnumerable<int> IOperacoes.NumerosDivisoresPrimos(int n)
+        public List<int> NumerosDivisoresPrimos(int n)
         {
             if (n == 0)
-                throw new ArgumentException("Não existe numeros divisores primos entre zero.");
+                return null;
 
             var numerosPrimos = new List<int>() { 1 };
 

@@ -8,10 +8,10 @@ using System.Collections.Generic;
 namespace Desafio.Framework.Api.Controllers
 {
 
-    [Authorize]
+    //[Authorize]
     [ApiController]
-    [Route("api/[controller]")]    
     [ApiVersion("1.0")]
+    [Route("api/[controller]")]    
     [Produces("application/json")]
     public class OperacoesController : ControllerBase
     {
@@ -22,13 +22,13 @@ namespace Desafio.Framework.Api.Controllers
             _operacoes = operacoes;
         }
 
-        [HttpGet("divisores")]        
+        [HttpGet("divisores")]  
         [SwaggerOperation(Summary = "Verifica todos os divisores que compõem o número.")]
         [ProducesResponseType(statusCode: 200, Type = typeof(IList<int>))]
         [ProducesResponseType(statusCode: 500, Type = typeof(ErrorResponse))]
         [ProducesResponseType(statusCode: 404)]
         public IActionResult Divisores(
-            [FromHeader, SwaggerParameter(Required = true)] 
+            [FromQuery, SwaggerParameter(Required = true)] 
             int numero)
         {
             var numDivisores = _operacoes.NumerosDivisores(numero);
@@ -39,13 +39,31 @@ namespace Desafio.Framework.Api.Controllers
             return Ok(numDivisores);
         }
 
+
+        [HttpGet("divisores/primos")]
+        [SwaggerOperation(Summary = "Verifica todos os divisores primos que compõem o número.")]
+        [ProducesResponseType(statusCode: 200, Type = typeof(IList<int>))]
+        [ProducesResponseType(statusCode: 500, Type = typeof(ErrorResponse))]
+        [ProducesResponseType(statusCode: 404)]
+        public IActionResult DivisoresPrimos(
+            [FromQuery, SwaggerParameter(Required = true)] 
+            int numero)
+        {
+            var numPrimos = _operacoes.NumerosDivisoresPrimos(numero);
+
+            if (numPrimos == null)
+                return NotFound();
+
+            return Ok(numPrimos);
+        }
+
         [HttpGet("primos")]
         [SwaggerOperation(Summary = "Verifica todos os primos que compõem o número.")]
         [ProducesResponseType(statusCode: 200, Type = typeof(IList<int>))]
         [ProducesResponseType(statusCode: 500, Type = typeof(ErrorResponse))]
         [ProducesResponseType(statusCode: 404)]
         public IActionResult Primos(
-            [FromHeader, SwaggerParameter(Required = true)] 
+            [FromQuery, SwaggerParameter(Required = true)] 
             int numero)
         {
             var numPrimos = _operacoes.NumerosPrimos(numero);
@@ -56,21 +74,5 @@ namespace Desafio.Framework.Api.Controllers
             return Ok(numPrimos);
         }
 
-        [HttpGet("divisores/primos")]
-        [SwaggerOperation(Summary = "Verifica todos os divisores primos que compõem o número.")]
-        [ProducesResponseType(statusCode: 200, Type = typeof(IList<int>))]
-        [ProducesResponseType(statusCode: 500, Type = typeof(ErrorResponse))]
-        [ProducesResponseType(statusCode: 404)]
-        public IActionResult DivisoresPrimos(
-            [FromHeader, SwaggerParameter(Required = true)] 
-            int numero)
-        {
-            var numPrimos = _operacoes.NumerosDivisoresPrimos(numero);
-
-            if (numPrimos == null)
-                return NotFound();
-
-            return Ok(numPrimos);
-        }
     }
 }
